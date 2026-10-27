@@ -22,6 +22,10 @@ const apiBase = "https://datos.gob.cl/api/action"
 func main() {
 	s := server.NewMCPServer("datos-gob-cl", "1.0.0")
 
+	s.AddTool(mcp.NewTool("catalogo",
+		mcp.WithDescription("Lista todas las fuentes de datos y herramientas disponibles, su estado (activo / requiere ticket / externo) y lo que falta por cubrir. Úsalo primero para descubrir qué puede hacer este servidor."),
+	), catalogoHandler)
+
 	// --- datos.gob.cl (CKAN) ---
 
 	s.AddTool(mcp.NewTool("buscar_datasets",
@@ -860,6 +864,81 @@ var tagRe = regexp.MustCompile(`<[^>]+>`)
 // cleanText decodifica entidades HTML y quita tags (ej. unidades de SINCA).
 func cleanText(s string) string {
 	return strings.TrimSpace(tagRe.ReplaceAllString(html.UnescapeString(s), ""))
+}
+
+type catTool struct{ nombre, desc, estado string }
+type catFuente struct {
+	categoria string
+	fuente    string
+	tools     []catTool
+}
+
+var catalogo = []catFuente{
+	{"Datos abiertos", "datos.gob.cl (CKAN)", []catTool{
+		{"buscar_datasets", "descubre datasets por palabra clave/categoría", "activo"},
+		{"ver_recurso", "esquema y muestra de un recurso", "activo"},
+		{"consultar", "consulta un recurso con filtros y paginación", "activo"},
+		{"buscar_empresa", "Registro de Empresas y Sociedades por RUT/nombre", "activo"},
+	}},
+	{"Economía", "mindicador.cl", []catTool{
+		{"indicadores_economicos", "UF, dólar, euro, UTM, IPC, TPM, IMACEC, cobre, bitcoin", "externo (depende de mindicador.cl; puede estar caído)"},
+	}},
+	{"Sismología", "api.gael.cloud", []catTool{
+		{"sismos", "últimos sismos en Chile", "activo"},
+	}},
+	{"Medio ambiente", "SINCA (MMA)", []catTool{
+		{"calidad_aire", "MP2.5, MP10, SO2, NO2, CO en tiempo real por estación", "activo"},
+	}},
+	{"Salud", "Farmanet (MINSAL)", []catTool{
+		{"farmacias_turno", "farmacias de turno por comuna/región", "activo"},
+	}},
+	{"Compras públicas", "Mercado Público / ChileCompra", []catTool{
+		{"licitaciones", "licitaciones públicas por fecha/estado/código", "ticket"},
+		{"ordenes_compra", "órdenes de compra del Estado", "ticket"},
+		{"proveedor_estado", "proveedor del Estado por RUT", "ticket"},
+		{"organismos_publicos", "listado de organismos compradores", "ticket"},
+	}},
+}
+
+// Fuentes/áreas que aún no cubrimos (lo que nos falta).
+var faltante = []string{
+	"Emergencias y desastres actualizados (SENAPRED): inundaciones, alertas, damnificados. No disponible en datos.gob.cl de forma consultable.",
+	"Meteorología / pronóstico (Dirección Meteorológica de Chile).",
+	"Presupuesto y ejecución del gasto público (DIPRES / transparencia).",
+	"Estadísticas INE detalladas (empleo, IPC por producto, censo).",
+	"Series del Banco Central (más allá de los indicadores de mindicador).",
+	"Transparencia: remuneraciones, viáticos, compras por organismo.",
+}
+
+func catalogoHandler(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	tieneTicket := os.Getenv("MERCADO_PUBLICO_TICKET") != ""
+	var sb strings.Builder
+	sb.WriteString("# Catálogo — datos-gob-cl MCP\n\nFuentes y herramientas disponibles, con su estado.\n\n")
+	for _, f := range catalogo {
+		fmt.Fprintf(&sb, "## %s — %s\n", f.categoria, f.fuente)
+		for _, t := range f.tools {
+			estado := t.estado
+			switch estado {
+			case "activo":
+				estado = "activo ✅"
+			case "ticket":
+				if tieneTicket {
+					estado = "configurado ✅"
+				} else {
+					estado = "requiere MERCADO_PUBLICO_TICKET 🔑"
+				}
+			default:
+				estado = estado + " ⚠️"
+			}
+			fmt.Fprintf(&sb, "- `%s` — %s _(%s)_\n", t.nombre, t.desc, estado)
+		}
+		sb.WriteString("\n")
+	}
+	sb.WriteString("## Lo que falta / próximas fuentes\n")
+	for _, m := range faltante {
+		fmt.Fprintf(&sb, "- [ ] %s\n", m)
+	}
+	return mcp.NewToolResultText(sb.String()), nil
 }
 
 func stringArg(req mcp.CallToolRequest, name string) string {

@@ -10,6 +10,12 @@ independiente y no oficial.
 
 ## Herramientas
 
+> **Empezá por `catalogo`** — lista todas las fuentes y herramientas, su estado
+> (activo / requiere ticket / externo) y lo que falta por cubrir. Autodescubrible
+> para cualquier agente.
+
+- `catalogo` — índice de todo lo disponible y lo pendiente.
+
 **datos.gob.cl (CKAN)**
 - `buscar_datasets(q, categoria?, limite?)` — descubre qué datos existen.
 - `ver_recurso(resource_id, muestra?)` — esquema + muestra de un recurso.
