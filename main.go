@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
 
@@ -29,11 +30,16 @@ func main() {
 	// --- datos.gob.cl (CKAN) ---
 
 	s.AddTool(mcp.NewTool("buscar_datasets",
-		mcp.WithDescription("Busca datasets en datos.gob.cl por palabra clave o categoría. Úsalo primero para descubrir qué datos existen."),
-		mcp.WithString("q", mcp.Required(), mcp.Description("Término de búsqueda, ej: 'empresas', 'precios', 'salud'")),
-		mcp.WithString("categoria", mcp.Description("Filtrar por categoría: gobierno, salud, finanzas, educacion, negocios, transporte, seguridad, etc.")),
-		mcp.WithNumber("limite", mcp.Description("Cantidad de resultados (default 5)")),
+		mcp.WithDescription("Busca o navega los ~3.200 datasets de datos.gob.cl. Si 'q' va vacío, lista todos (paginado con 'offset'). Filtrable por organismo. Úsalo para descubrir qué datos existen."),
+		mcp.WithString("q", mcp.Description("Término de búsqueda (opcional). Vacío = navegar todos los datasets.")),
+		mcp.WithString("organismo", mcp.Description("Slug del organismo publicador para filtrar, ej: 'direccion_de_presupuestos' (ver categorias_datasets).")),
+		mcp.WithNumber("limite", mcp.Description("Resultados por página (default 10, máx 100)")),
+		mcp.WithNumber("offset", mcp.Description("Desde qué resultado (paginación), default 0")),
 	), buscarDatasets)
+
+	s.AddTool(mcp.NewTool("categorias_datasets",
+		mcp.WithDescription("Mapa de todo datos.gob.cl: organismos publicadores y tags más frecuentes con su cantidad de datasets. Úsalo para ver el panorama y luego filtrar buscar_datasets por organismo."),
+	), categoriasDatasets)
 
 	s.AddTool(mcp.NewTool("ver_recurso",
 		mcp.WithDescription("Muestra el esquema (campos y tipos) y una muestra de datos de un recurso. Úsalo después de buscar_datasets para entender la estructura antes de consultar."),
@@ -127,12 +133,19 @@ func main() {
 
 func buscarDatasets(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	q := stringArg(req, "q")
-	cat := stringArg(req, "categoria")
-	limite := intArg(req, "limite", 5)
+	if q == "" {
+		q = "*:*"
+	}
+	organismo := stringArg(req, "organismo")
+	limite := intArg(req, "limite", 10)
+	if limite > 100 {
+		limite = 100
+	}
+	offset := intArg(req, "offset", 0)
 
-	params := url.Values{"q": {q}, "rows": {fmt.Sprint(limite)}}
-	if cat != "" {
-		params.Set("fq", "groups:"+cat)
+	params := url.Values{"q": {q}, "rows": {fmt.Sprint(limite)}, "start": {fmt.Sprint(offset)}}
+	if organismo != "" {
+		params.Set("fq", "organization:"+organismo)
 	}
 
 	body, err := apiGet("package_search", params)
@@ -164,7 +177,15 @@ func buscarDatasets(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolRe
 	}
 
 	var sb strings.Builder
-	fmt.Fprintf(&sb, "Encontrados: %d datasets\n\n", resp.Result.Count)
+	hasta := offset + limite
+	if hasta > resp.Result.Count {
+		hasta = resp.Result.Count
+	}
+	fmt.Fprintf(&sb, "Datasets %d-%d de %d en total.\n", offset+1, hasta, resp.Result.Count)
+	if hasta < resp.Result.Count {
+		fmt.Fprintf(&sb, "(para más, repetí con offset=%d)\n", hasta)
+	}
+	sb.WriteString("\n")
 	for _, ds := range resp.Result.Results {
 		fmt.Fprintf(&sb, "## %s\n", ds.Title)
 		fmt.Fprintf(&sb, "Publicado por: %s\n", ds.Organization.Title)
@@ -185,6 +206,54 @@ func buscarDatasets(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolRe
 		sb.WriteString("\n")
 	}
 	return mcp.NewToolResultText(sb.String()), nil
+}
+
+func categoriasDatasets(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	params := url.Values{
+		"q":           {"*:*"},
+		"rows":        {"0"},
+		"facet.field": {`["organization","tags"]`},
+		"facet.limit": {"20"},
+	}
+	body, err := apiGet("package_search", params)
+	if err != nil {
+		return errResult(err), nil
+	}
+	var resp struct {
+		Result struct {
+			Count  int                       `json:"count"`
+			Facets map[string]map[string]int `json:"facets"`
+		} `json:"result"`
+	}
+	if err := json.Unmarshal(body, &resp); err != nil {
+		return errResult(err), nil
+	}
+	var sb strings.Builder
+	fmt.Fprintf(&sb, "# Mapa de datos.gob.cl — %d datasets\n\n", resp.Result.Count)
+	fmt.Fprintf(&sb, "## Organismos con más datasets\n")
+	for _, kv := range sortFacet(resp.Result.Facets["organization"]) {
+		fmt.Fprintf(&sb, "- `%s` — %d datasets\n", kv.k, kv.v)
+	}
+	fmt.Fprintf(&sb, "\n## Tags más frecuentes\n")
+	for _, kv := range sortFacet(resp.Result.Facets["tags"]) {
+		fmt.Fprintf(&sb, "- %s — %d\n", kv.k, kv.v)
+	}
+	sb.WriteString("\nFiltrá por organismo con buscar_datasets(organismo=\"<slug>\").\n")
+	return mcp.NewToolResultText(sb.String()), nil
+}
+
+type kvCount struct {
+	k string
+	v int
+}
+
+func sortFacet(m map[string]int) []kvCount {
+	out := make([]kvCount, 0, len(m))
+	for k, v := range m {
+		out = append(out, kvCount{k, v})
+	}
+	sort.Slice(out, func(i, j int) bool { return out[i].v > out[j].v })
+	return out
 }
 
 func verRecurso(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -875,7 +944,9 @@ type catFuente struct {
 
 var catalogo = []catFuente{
 	{"Datos abiertos", "datos.gob.cl (CKAN)", []catTool{
-		{"buscar_datasets", "descubre datasets por palabra clave/categoría", "activo"},
+		{"catalogo", "este índice: todo lo disponible y lo pendiente", "activo"},
+		{"buscar_datasets", "busca o navega los ~3.200 datasets (q opcional, paginado, por organismo)", "activo"},
+		{"categorias_datasets", "mapa por organismo/tag para navegar todo", "activo"},
 		{"ver_recurso", "esquema y muestra de un recurso", "activo"},
 		{"consultar", "consulta un recurso con filtros y paginación", "activo"},
 		{"buscar_empresa", "Registro de Empresas y Sociedades por RUT/nombre", "activo"},
