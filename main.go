@@ -4,11 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"html"
 	"io"
 	"net/http"
 	"net/url"
 	"os"
+	"regexp"
 	"strings"
+	"time"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -449,11 +452,11 @@ func ultimosSismos(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResul
 	}
 
 	var sismos []struct {
-		Fecha          string `json:"Fecha"`
-		Profundidad    string `json:"Profundidad"`
-		Magnitud       string `json:"Magnitud"`
-		RefGeografica  string `json:"RefGeografica"`
-		FechaUpdate    string `json:"FechaUpdate"`
+		Fecha         string `json:"Fecha"`
+		Profundidad   string `json:"Profundidad"`
+		Magnitud      string `json:"Magnitud"`
+		RefGeografica string `json:"RefGeografica"`
+		FechaUpdate   string `json:"FechaUpdate"`
 	}
 	if err := json.Unmarshal(body, &sismos); err != nil {
 		return errResult(err), nil
@@ -529,7 +532,7 @@ func calidadAire(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolResul
 				continue
 			}
 			fmt.Fprintf(&sb, "- %s: **%.1f %s** | Estado: %s | ICAP: %.0f\n",
-				tr.Parameter, tr.Value, tr.Unit, tr.Status, tr.Icap)
+				cleanText(tr.Parameter), tr.Value, cleanText(tr.Unit), tr.Status, tr.Icap)
 		}
 		sb.WriteString("\n")
 	}
@@ -540,45 +543,43 @@ func calidadAire(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolResul
 
 // ===================== Farmacias de turno (datos.gob.cl CKAN) =====================
 
-const farmaciasResourceID = "48e8d293-0580-4dd9-a7c1-1cfa4e89faae"
-
 func farmaciasTurno(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-	comuna := stringArg(req, "comuna")
+	comuna := strings.ToLower(stringArg(req, "comuna"))
 	region := stringArg(req, "region")
 	limite := intArg(req, "limite", 10)
 
-	params := url.Values{
-		"resource_id": {farmaciasResourceID},
-		"limit":       {fmt.Sprint(limite)},
-	}
-
-	if comuna != "" {
-		params.Set("q", comuna)
-	}
-	if region != "" {
-		params.Set("filters", fmt.Sprintf(`{"fk_region":"%s"}`, region))
-	}
-
-	body, err := apiGet("datastore_search", params)
+	// Fuente estable: Farmanet (MINSAL). El recurso CKAN anterior quedó obsoleto.
+	body, err := httpGet("https://midas.minsal.cl/farmacia_v2/WS/getLocalesTurnos.php")
 	if err != nil {
 		return errResult(err), nil
 	}
-
-	var resp dsResponse
-	if err := json.Unmarshal(body, &resp); err != nil {
-		return errResult(err), nil
+	var locales []map[string]any
+	if err := json.Unmarshal(body, &locales); err != nil {
+		return errResult(fmt.Errorf("error parseando Farmanet: %w", err)), nil
 	}
 
 	var sb strings.Builder
-	fmt.Fprintf(&sb, "## Farmacias de Turno — %d resultados\n\n", resp.Result.Total)
-	for _, rec := range resp.Result.Records {
-		fmt.Fprintf(&sb, "**%v**\n", rec["local_nombre"])
-		fmt.Fprintf(&sb, "  Dirección: %v, %v\n", rec["local_direccion"], rec["comuna_nombre"])
-		fmt.Fprintf(&sb, "  Teléfono: %v\n", rec["local_telefono"])
-		fmt.Fprintf(&sb, "  Horario: %v - %v\n", rec["funcionamiento_hora_apertura"], rec["funcionamiento_hora_cierre"])
-		fmt.Fprintf(&sb, "  Día: %v\n\n", rec["funcionamiento_dia"])
+	n := 0
+	for _, f := range locales {
+		if comuna != "" && !strings.Contains(strings.ToLower(fmt.Sprint(f["comuna_nombre"])), comuna) {
+			continue
+		}
+		if region != "" && fmt.Sprint(f["fk_region"]) != region {
+			continue
+		}
+		fmt.Fprintf(&sb, "**%v** (%v)\n", f["local_nombre"], f["comuna_nombre"])
+		fmt.Fprintf(&sb, "  Dirección: %v\n", f["local_direccion"])
+		fmt.Fprintf(&sb, "  Teléfono: %v\n", f["local_telefono"])
+		fmt.Fprintf(&sb, "  Horario: %v - %v\n\n", f["funcionamiento_hora_apertura"], f["funcionamiento_hora_cierre"])
+		n++
+		if n >= limite {
+			break
+		}
 	}
-	return mcp.NewToolResultText(sb.String()), nil
+	if n == 0 {
+		return mcp.NewToolResultText("No se encontraron farmacias de turno para ese filtro (datos de Farmanet/MINSAL)."), nil
+	}
+	return mcp.NewToolResultText(fmt.Sprintf("## Farmacias de turno — %d resultado(s)\n\n%s", n, sb.String())), nil
 }
 
 // ===================== Mercado Público / ChileCompra =====================
@@ -626,16 +627,16 @@ func buscarLicitaciones(_ context.Context, req mcp.CallToolRequest) (*mcp.CallTo
 	var resp struct {
 		Cantidad int `json:"Cantidad"`
 		Listado  []struct {
-			CodigoExterno    string `json:"CodigoExterno"`
-			Nombre           string `json:"Nombre"`
-			CodigoEstado     int    `json:"CodigoEstado"`
-			Estado           string `json:"Estado,omitempty"`
-			Descripcion      string `json:"Descripcion"`
-			FechaCierre      string `json:"FechaCierre"`
-			Comprador        string `json:"NombreOrganismo,omitempty"`
-			Tipo             string `json:"Tipo,omitempty"`
-			TipoConvocatoria string `json:"TipoConvocatoria,omitempty"`
-			Moneda           string `json:"Moneda,omitempty"`
+			CodigoExterno    string  `json:"CodigoExterno"`
+			Nombre           string  `json:"Nombre"`
+			CodigoEstado     int     `json:"CodigoEstado"`
+			Estado           string  `json:"Estado,omitempty"`
+			Descripcion      string  `json:"Descripcion"`
+			FechaCierre      string  `json:"FechaCierre"`
+			Comprador        string  `json:"NombreOrganismo,omitempty"`
+			Tipo             string  `json:"Tipo,omitempty"`
+			TipoConvocatoria string  `json:"TipoConvocatoria,omitempty"`
+			Moneda           string  `json:"Moneda,omitempty"`
 			Estimacion       float64 `json:"MontoEstimado,omitempty"`
 		} `json:"Listado"`
 	}
@@ -708,14 +709,14 @@ func buscarOrdenesCompra(_ context.Context, req mcp.CallToolRequest) (*mcp.CallT
 	var resp struct {
 		Cantidad int `json:"Cantidad"`
 		Listado  []struct {
-			Codigo       string  `json:"Codigo"`
-			Nombre       string  `json:"Nombre"`
-			Estado       string  `json:"Estado,omitempty"`
-			Proveedor    string  `json:"NombreProveedor,omitempty"`
-			Organismo    string  `json:"NombreOrganismo,omitempty"`
-			Fecha        string  `json:"Fechaenvio,omitempty"`
-			Total        float64 `json:"TotalNeto,omitempty"`
-			Moneda       string  `json:"TipoMoneda,omitempty"`
+			Codigo    string  `json:"Codigo"`
+			Nombre    string  `json:"Nombre"`
+			Estado    string  `json:"Estado,omitempty"`
+			Proveedor string  `json:"NombreProveedor,omitempty"`
+			Organismo string  `json:"NombreOrganismo,omitempty"`
+			Fecha     string  `json:"Fechaenvio,omitempty"`
+			Total     float64 `json:"TotalNeto,omitempty"`
+			Moneda    string  `json:"TipoMoneda,omitempty"`
 		} `json:"Listado"`
 	}
 	if err := json.Unmarshal(body, &resp); err != nil {
@@ -758,8 +759,8 @@ func buscarProveedor(_ context.Context, req mcp.CallToolRequest) (*mcp.CallToolR
 
 	rut := stringArg(req, "rut")
 	params := url.Values{
-		"ticket":                {ticket},
-		"rutempresaproveedor":   {rut},
+		"ticket":              {ticket},
+		"rutempresaproveedor": {rut},
 	}
 
 	body, err := httpGet(mpBase + "/Empresas/BuscarProveedor?" + params.Encode())
@@ -820,9 +821,16 @@ type dsField struct {
 	Type string `json:"type"`
 }
 
-// apiGet calls the datos.gob.cl CKAN API.
-func apiGet(action string, params url.Values) ([]byte, error) {
-	resp, err := http.Get(apiBase + "/" + action + "?" + params.Encode())
+var httpClient = &http.Client{Timeout: 25 * time.Second}
+
+// doGet hace un GET con timeout y User-Agent, y valida el status.
+func doGet(rawURL string) ([]byte, error) {
+	r, err := http.NewRequest(http.MethodGet, rawURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	r.Header.Set("User-Agent", "mcp-datos-gob-cl/1.0 (+https://github.com/MarcoValdiviesoB/mcp-datos-gob-cl)")
+	resp, err := httpClient.Do(r)
 	if err != nil {
 		return nil, fmt.Errorf("error HTTP: %w", err)
 	}
@@ -837,21 +845,21 @@ func apiGet(action string, params url.Values) ([]byte, error) {
 	return body, nil
 }
 
+// apiGet calls the datos.gob.cl CKAN API.
+func apiGet(action string, params url.Values) ([]byte, error) {
+	return doGet(apiBase + "/" + action + "?" + params.Encode())
+}
+
 // httpGet fetches any URL (for external APIs).
 func httpGet(rawURL string) ([]byte, error) {
-	resp, err := http.Get(rawURL)
-	if err != nil {
-		return nil, fmt.Errorf("error HTTP: %w", err)
-	}
-	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error leyendo respuesta: %w", err)
-	}
-	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("API respondió %d: %s", resp.StatusCode, string(body[:min(len(body), 200)]))
-	}
-	return body, nil
+	return doGet(rawURL)
+}
+
+var tagRe = regexp.MustCompile(`<[^>]+>`)
+
+// cleanText decodifica entidades HTML y quita tags (ej. unidades de SINCA).
+func cleanText(s string) string {
+	return strings.TrimSpace(tagRe.ReplaceAllString(html.UnescapeString(s), ""))
 }
 
 func stringArg(req mcp.CallToolRequest, name string) string {

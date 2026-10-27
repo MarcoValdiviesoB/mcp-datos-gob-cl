@@ -68,6 +68,12 @@ Mercado Público. El resto funciona sin credenciales.
 Proyecto personal, independiente y no oficial. No afiliado a los proveedores
 de datos.
 
+## Notas de fuentes
+- `farmacias_turno` usa **Farmanet (MINSAL)** directo (fuente estable).
+- `indicadores_economicos` depende de **mindicador.cl**; si el sitio está caído,
+  la herramienta devuelve un error claro (timeout de 25s).
+- Las herramientas de **Mercado Público** requieren `MERCADO_PUBLICO_TICKET`.
+
 ## Licencia
 
 MIT.
