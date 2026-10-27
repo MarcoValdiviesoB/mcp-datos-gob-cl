@@ -17,7 +17,8 @@ independiente y no oficial.
 - `catalogo` — índice de todo lo disponible y lo pendiente.
 
 **datos.gob.cl (CKAN)**
-- `buscar_datasets(q, categoria?, limite?)` — descubre qué datos existen.
+- `categorias_datasets()` — mapa de todo: organismos y tags con cantidad de datasets (~3.200 en total).
+- `buscar_datasets(q?, organismo?, limite?, offset?)` — busca por palabra clave **o navega todos** los datasets (q vacío = todos, paginado con `offset`; filtrable por `organismo`).
 - `ver_recurso(resource_id, muestra?)` — esquema + muestra de un recurso.
 - `consultar(resource_id, q?, filtros?, campos?, ordenar?, limite?, offset?)` — consulta con filtros y paginación.
 - `buscar_empresa(rut?, nombre?, anio?)` — Registro de Empresas y Sociedades.
