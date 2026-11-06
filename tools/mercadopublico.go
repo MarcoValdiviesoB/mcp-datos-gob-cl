@@ -69,7 +69,7 @@ type MPItem struct {
 	Codigo string `json:"codigo"`
 	Nombre string `json:"nombre"`
 	Estado string `json:"estado"`
-	Cierre string `json:"cierre,omitempty" jsonschema:"description=Fecha de cierre aaaa-mm-dd hh:mm (solo licitaciones)"`
+	Cierre string `json:"cierre,omitempty" jsonschema:"Fecha de cierre aaaa-mm-dd hh:mm (solo licitaciones)"`
 }
 
 // MPOrganismo es el comprador de una licitación u orden.
@@ -89,7 +89,7 @@ type LicitacionDetalle struct {
 	MontoEstimado     float64     `json:"monto_estimado,omitempty"`
 	Moneda            string      `json:"moneda,omitempty"`
 	FechaPublicacion  string      `json:"fecha_publicacion,omitempty"`
-	FechaAdjudicacion string      `json:"fecha_adjudicacion,omitempty" jsonschema:"description=Real o estimada"`
+	FechaAdjudicacion string      `json:"fecha_adjudicacion,omitempty" jsonschema:"Real o estimada"`
 	Oferentes         int         `json:"oferentes,omitempty"`
 	URLActa           string      `json:"url_acta,omitempty"`
 	Descripcion       string      `json:"descripcion"`
@@ -100,8 +100,8 @@ type LicitacionesOut struct {
 	Total        int                `json:"total"`
 	Pagina       int                `json:"pagina"`
 	Limite       int                `json:"limite"`
-	Licitaciones []MPItem           `json:"licitaciones" jsonschema:"description=Filas de esta página"`
-	Detalle      *LicitacionDetalle `json:"detalle,omitempty" jsonschema:"description=Presente cuando la búsqueda devuelve una sola licitación con detalle (por codigo)"`
+	Licitaciones []MPItem           `json:"licitaciones" jsonschema:"Filas de esta página"`
+	Detalle      *LicitacionDetalle `json:"detalle,omitempty" jsonschema:"Presente cuando la búsqueda devuelve una sola licitación con detalle (por codigo)"`
 }
 
 func (h *handlers) buscarLicitaciones(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -204,8 +204,8 @@ type OrdenesOut struct {
 	Total   int           `json:"total"`
 	Pagina  int           `json:"pagina"`
 	Limite  int           `json:"limite"`
-	Ordenes []MPItem      `json:"ordenes" jsonschema:"description=Filas de esta página"`
-	Detalle *OrdenDetalle `json:"detalle,omitempty" jsonschema:"description=Presente cuando la búsqueda devuelve una sola orden con detalle (por codigo)"`
+	Ordenes []MPItem      `json:"ordenes" jsonschema:"Filas de esta página"`
+	Detalle *OrdenDetalle `json:"detalle,omitempty" jsonschema:"Presente cuando la búsqueda devuelve una sola orden con detalle (por codigo)"`
 }
 
 func (h *handlers) buscarOrdenesCompra(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
