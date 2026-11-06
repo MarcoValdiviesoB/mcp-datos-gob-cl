@@ -1,0 +1,21 @@
+{
+ "Cantidad": 1,
+ "FechaCreacion": "2026-11-06T12:00:00.000",
+ "Version": "v1",
+ "Listado": [
+  {
+   "CodigoExterno": "1509-5-L126",
+   "Nombre": "ADQUISICIÓN DE INSUMOS MÉDICOS",
+   "CodigoEstado": 8,
+   "Estado": "Adjudicada",
+   "Descripcion": "Adquisición de insumos médicos para el &quot;Hospital&quot; base.",
+   "FechaCierre": null,
+   "Tipo": "L1",
+   "Moneda": "CLP",
+   "MontoEstimado": 4500000,
+   "Comprador": {"CodigoOrganismo": "7248", "NombreOrganismo": "SERVICIO DE SALUD METROPOLITANO", "NombreUnidad": "Hospital Base", "ComunaUnidad": "Santiago", "RegionUnidad": "Región Metropolitana de Santiago"},
+   "Fechas": {"FechaPublicacion": "2026-10-20T09:00:00", "FechaCierre": "2026-11-03T15:00:00", "FechaAdjudicacion": null, "FechaEstimadaAdjudicacion": "2026-11-15T00:00:00"},
+   "Adjudicacion": {"Fecha": "2026-11-05T10:00:00", "Numero": "123", "NumeroOferentes": 4, "UrlActa": "https://www.mercadopublico.cl/acta/123"}
+  }
+ ]
+}

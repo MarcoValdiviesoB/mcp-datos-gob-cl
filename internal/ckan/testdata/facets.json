@@ -1,0 +1,69 @@
+{
+ "help": "https://datos.gob.cl/api/3/action/help_show?name=package_search",
+ "success": true,
+ "result": {
+  "count": 3165,
+  "search_facets": {
+   "organization": {
+    "title": "organization",
+    "items": [
+     {
+      "name": "municipalidad_de_puente_alto",
+      "display_name": "Municipalidad de Puente Alto",
+      "count": 230
+     },
+     {
+      "name": "municipalidad_de_maule",
+      "display_name": "Municipalidad de Maule",
+      "count": 140
+     },
+     {
+      "name": "municipalidad_de_arica",
+      "display_name": "Municipalidad de Arica",
+      "count": 72
+     },
+     {
+      "name": "direccion_de_presupuestos",
+      "display_name": "Dirección de Presupuestos",
+      "count": 506
+     },
+     {
+      "name": "direccion_general_de_aeronautica_civil",
+      "display_name": "Dirección General de Aeronáutica Civil",
+      "count": 127
+     }
+    ]
+   },
+   "tags": {
+    "title": "tags",
+    "items": [
+     {
+      "name": "presupuestos",
+      "display_name": "presupuestos",
+      "count": 111
+     },
+     {
+      "name": "presupuestaria",
+      "display_name": "presupuestaria",
+      "count": 112
+     },
+     {
+      "name": "dipres",
+      "display_name": "dipres",
+      "count": 176
+     },
+     {
+      "name": "Ley",
+      "display_name": "Ley",
+      "count": 138
+     },
+     {
+      "name": "Dipres",
+      "display_name": "Dipres",
+      "count": 206
+     }
+    ]
+   }
+  }
+ }
+}

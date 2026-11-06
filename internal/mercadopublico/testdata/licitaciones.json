@@ -1,0 +1,10 @@
+{
+ "Cantidad": 3,
+ "FechaCreacion": "2026-11-06T12:00:00.000",
+ "Version": "v1",
+ "Listado": [
+  {"CodigoExterno": "1509-5-L126", "Nombre": "ADQUISICIÓN DE INSUMOS MÉDICOS | HOSPITAL", "CodigoEstado": 5, "FechaCierre": "2026-11-20T15:00:00"},
+  {"CodigoExterno": "2341-12-LE26", "Nombre": "Servicio de aseo dependencias municipales", "CodigoEstado": 6, "FechaCierre": "2026-11-05T12:00:00"},
+  {"CodigoExterno": "770-33-L126", "Nombre": "Compra de cartuchos de tóner", "CodigoEstado": 99, "FechaCierre": null}
+ ]
+}

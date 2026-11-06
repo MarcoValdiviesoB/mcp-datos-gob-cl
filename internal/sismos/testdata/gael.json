@@ -1,0 +1,37 @@
+[
+ {
+  "Fecha": "2026-11-06 11:27:00",
+  "Profundidad": "98",
+  "Magnitud": "2.9",
+  "RefGeografica": "56 km al NE de Mina La Escondida",
+  "FechaUpdate": "2026-11-06T12:45:00.520Z"
+ },
+ {
+  "Fecha": "2026-11-06 11:15:39",
+  "Profundidad": "176",
+  "Magnitud": "2.5",
+  "RefGeografica": "47 km al NE de Mina Collahuasi",
+  "FechaUpdate": "2026-11-06T12:45:00.520Z"
+ },
+ {
+  "Fecha": "2026-11-06 10:36:24",
+  "Profundidad": "116",
+  "Magnitud": "2.9",
+  "RefGeografica": "48 km al SO de Mina Collahuasi",
+  "FechaUpdate": "2026-11-06T12:45:00.520Z"
+ },
+ {
+  "Fecha": "2026-11-06 10:09:13",
+  "Profundidad": "140",
+  "Magnitud": "3.0",
+  "RefGeografica": "43 km al O de Ollagüe",
+  "FechaUpdate": "2026-11-06T12:45:00.520Z"
+ },
+ {
+  "Fecha": "2026-11-06 09:49:21",
+  "Profundidad": "110",
+  "Magnitud": "2.8",
+  "RefGeografica": "28 km al S de Mina Collahuasi",
+  "FechaUpdate": "2026-11-06T12:45:00.520Z"
+ }
+]

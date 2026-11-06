@@ -1,0 +1,121 @@
+{
+ "help": "https://datos.gob.cl/api/3/action/help_show?name=package_show",
+ "success": true,
+ "result": {
+  "name": "registro-de-empresas-y-sociedades",
+  "resources": [
+   {
+    "id": "fd2b91b0-eb8e-45f1-98d0-1f3316bb6468",
+    "name": "Constituciones del año 2013",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/fd2b91b0-eb8e-45f1-98d0-1f3316bb6468/download/2013-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": true,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "ba5d9b2a-c292-45f5-9767-93420c62529e",
+    "name": "Constituciones del año 2014",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/ba5d9b2a-c292-45f5-9767-93420c62529e/download/2014-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "6ffd416f-376f-40a8-9537-0d739f29fac9",
+    "name": "Constituciones del año 2015",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/6ffd416f-376f-40a8-9537-0d739f29fac9/download/2015-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "288b0a7d-2d40-4c59-a312-2cc562cfe4eb",
+    "name": "Constituciones del año 2016",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/288b0a7d-2d40-4c59-a312-2cc562cfe4eb/download/2016-sociedades-por-fecha-rut-constitucion_v3.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "667eef5c-0896-424b-baf1-d13356d40326",
+    "name": "Constituciones del año 2017",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/667eef5c-0896-424b-baf1-d13356d40326/download/2017-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "ca45026b-4dde-44b0-8725-64446a95f69d",
+    "name": "Constituciones del año 2018",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/ca45026b-4dde-44b0-8725-64446a95f69d/download/2018-sociedades-por-fecha-rut-constitucion-v2.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "0d0d0ffb-fb28-4314-9bf0-8402353c9448",
+    "name": "Constituciones del año 2019",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/0d0d0ffb-fb28-4314-9bf0-8402353c9448/download/2019-sociedades-por-fecha-rut-constitucion-v3.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "1ad6cd82-8859-4601-a993-043009279f45",
+    "name": "Constituciones del año 2020",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/1ad6cd82-8859-4601-a993-043009279f45/download/2020-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "d5c69cb4-2fa8-4e92-906f-34776a30ce59",
+    "name": "Constituciones del año 2021",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/d5c69cb4-2fa8-4e92-906f-34776a30ce59/download/2021-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "3e286353-146d-47aa-ac42-e2f36e703d1f",
+    "name": "Constituciones del año 2022",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/3e286353-146d-47aa-ac42-e2f36e703d1f/download/2022-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "2fbe5f40-6c3d-42e6-8a84-e6ddce56d888",
+    "name": "Constituciones del año 2023",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/2fbe5f40-6c3d-42e6-8a84-e6ddce56d888/download/2023-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": false,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "42ee8c8c-59cf-42e4-89af-ec19a87dbf8d",
+    "name": "Constituciones del año 2024",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/42ee8c8c-59cf-42e4-89af-ec19a87dbf8d/download/2024-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": true,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "71c8e355-226a-461e-809a-870c2275a178",
+    "name": "Constituciones del año 2025",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/71c8e355-226a-461e-809a-870c2275a178/download/2025-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": true,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   },
+   {
+    "id": "472de7b5-384f-452d-9da5-2928689d8f2f",
+    "name": "Constituciones del año 2026, con fecha de corte al 30 de septiembre del 2026",
+    "format": "csv",
+    "url": "https://datos.gob.cl/dataset/363edd60-4919-4ff1-b85f-f8e14d61285a/resource/472de7b5-384f-452d-9da5-2928689d8f2f/download/202609-sociedades-por-fecha-rut-constitucion.csv",
+    "datastore_active": true,
+    "package_id": "363edd60-4919-4ff1-b85f-f8e14d61285a"
+   }
+  ]
+ }
+}

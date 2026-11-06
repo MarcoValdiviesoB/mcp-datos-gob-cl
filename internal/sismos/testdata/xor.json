@@ -1,0 +1,81 @@
+{
+ "status_code": 0,
+ "status_description": "Información obtenida satisfactoriamente",
+ "events": [
+  {
+   "id": "391128",
+   "url": "http://sismologia.cl/sismicidad/informes/2026/11/391128.html",
+   "map_url": "http://sismologia.cl/sismicidad/informes/2026/11/map_img/391128.jpeg",
+   "local_date": "2026-11-06 11:27:00",
+   "utc_date": "2026-11-06 14:27:00",
+   "latitude": -23.831,
+   "longitude": -68.782,
+   "depth": 98,
+   "magnitude": {
+    "value": 2.9,
+    "measure_unit": "Mlv"
+   },
+   "geo_reference": "56 km al NE de Mina La Escondida"
+  },
+  {
+   "id": "391126",
+   "url": "http://sismologia.cl/sismicidad/informes/2026/11/391126.html",
+   "map_url": "http://sismologia.cl/sismicidad/informes/2026/11/map_img/391126.jpeg",
+   "local_date": "2026-11-06 11:15:39",
+   "utc_date": "2026-11-06 14:15:39",
+   "latitude": -20.54,
+   "longitude": -68.323,
+   "depth": 176,
+   "magnitude": {
+    "value": 2.5,
+    "measure_unit": "Mlv"
+   },
+   "geo_reference": "47 km al NE de Mina Collahuasi"
+  },
+  {
+   "id": "391122",
+   "url": "http://sismologia.cl/sismicidad/informes/2026/11/391122.html",
+   "map_url": "http://sismologia.cl/sismicidad/informes/2026/11/map_img/391122.jpeg",
+   "local_date": "2026-11-06 10:36:24",
+   "utc_date": "2026-11-06 13:36:24",
+   "latitude": -21.076,
+   "longitude": -69.034,
+   "depth": 116,
+   "magnitude": {
+    "value": 2.9,
+    "measure_unit": "Mlv"
+   },
+   "geo_reference": "48 km al SO de Mina Collahuasi"
+  },
+  {
+   "id": "391116",
+   "url": "http://sismologia.cl/sismicidad/informes/2026/11/391116.html",
+   "map_url": "http://sismologia.cl/sismicidad/informes/2026/11/map_img/391116.jpeg",
+   "local_date": "2026-11-06 10:09:13",
+   "utc_date": "2026-11-06 13:09:13",
+   "latitude": -21.227,
+   "longitude": -68.673,
+   "depth": 140,
+   "magnitude": {
+    "value": 3,
+    "measure_unit": "Mlv"
+   },
+   "geo_reference": "43 km al O de Ollagüe"
+  },
+  {
+   "id": "391115",
+   "url": "http://sismologia.cl/sismicidad/informes/2026/11/391115.html",
+   "map_url": "http://sismologia.cl/sismicidad/informes/2026/11/map_img/391115.jpeg",
+   "local_date": "2026-11-06 09:49:21",
+   "utc_date": "2026-11-06 12:49:21",
+   "latitude": -21.074,
+   "longitude": -68.722,
+   "depth": 110,
+   "magnitude": {
+    "value": 2.8,
+    "measure_unit": "Mlv"
+   },
+   "geo_reference": "28 km al S de Mina Collahuasi"
+  }
+ ]
+}

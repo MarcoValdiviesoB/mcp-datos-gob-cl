@@ -1,0 +1,22 @@
+{
+ "Cantidad": 1,
+ "FechaCreacion": "2026-11-06T12:00:00.000",
+ "Version": "v1",
+ "Listado": [
+  {
+   "Codigo": "2097-1234-SE26",
+   "Nombre": "Compra de resmas de papel",
+   "CodigoEstado": 6,
+   "Estado": "Aceptada",
+   "CodigoLicitacion": "2097-55-L126",
+   "Descripcion": "Resmas tamaño carta",
+   "Tipo": "SE",
+   "TipoMoneda": "CLP",
+   "TotalNeto": 100000,
+   "Total": 119000,
+   "Fechas": {"FechaCreacion": "2026-11-01T10:00:00", "FechaEnvio": "2026-11-01T11:00:00", "FechaAceptacion": "2026-11-02T09:30:00"},
+   "Comprador": {"CodigoOrganismo": "6945", "NombreOrganismo": "I MUNICIPALIDAD DE TEMUCO", "NombreUnidad": "Adquisiciones", "ComunaUnidad": "Temuco", "RegionUnidad": "Región de la Araucanía"},
+   "Proveedor": {"Codigo": "17793", "Nombre": "COMERCIAL PAPELES LTDA", "RutSucursal": "70.017.820-k", "Actividad": "Venta de artículos de oficina"}
+  }
+ ]
+}
