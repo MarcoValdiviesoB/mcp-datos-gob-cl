@@ -210,12 +210,12 @@ func recordsTable(cols []string, records []map[string]any, budget int) string {
 // ConsultaOut es la salida estructurada de consultar.
 type ConsultaOut struct {
 	ResourceID      string           `json:"resource_id"`
-	Total           int              `json:"total" jsonschema:"description=Registros que cumplen la consulta"`
+	Total           int              `json:"total" jsonschema:"Registros que cumplen la consulta"`
 	Offset          int              `json:"offset"`
 	Campos          []string         `json:"campos"`
-	Registros       []map[string]any `json:"registros" jsonschema:"description=Registros de esta página (los mismos que la tabla de texto)"`
-	SiguienteOffset *int             `json:"siguiente_offset,omitempty" jsonschema:"description=Offset para la página siguiente; ausente si no hay más"`
-	Recortado       bool             `json:"recortado" jsonschema:"description=true si se devolvieron menos registros que los pedidos por tamaño"`
+	Registros       []map[string]any `json:"registros" jsonschema:"Registros de esta página (los mismos que la tabla de texto)"`
+	SiguienteOffset *int             `json:"siguiente_offset,omitempty" jsonschema:"Offset para la página siguiente; ausente si no hay más"`
+	Recortado       bool             `json:"recortado" jsonschema:"true si se devolvieron menos registros que los pedidos por tamaño"`
 }
 
 func (h *handlers) consultar(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {

@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go: ["1.23.x", "stable"]
+        go: ["1.25.x", "stable"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
@@ -30,8 +30,7 @@ jobs:
       - name: cobertura
         run: go tool cover -func=coverage.out | tail -1
 
-  # staticcheck y govulncheck van solo con Go estable: sus últimas versiones no compilan con 1.23
-  # y govulncheck reporta vulnerabilidades de la stdlib de 1.23 que ya no tiene parches.
+  # staticcheck y govulncheck van solo con Go estable: así govulncheck mira la stdlib con los últimos parches.
   lint:
     runs-on: ubuntu-latest
     steps:

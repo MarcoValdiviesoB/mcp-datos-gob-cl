@@ -20,12 +20,12 @@ import (
 // IndicadoresOut es la salida estructurada de indicadores_economicos.
 type IndicadoresOut struct {
 	Fuente    string           `json:"fuente"`
-	Indicador string           `json:"indicador,omitempty" jsonschema:"description=Código del indicador; ausente si son los valores del día de todos"`
+	Indicador string           `json:"indicador,omitempty" jsonschema:"Código del indicador; ausente si son los valores del día de todos"`
 	Anio      string           `json:"anio,omitempty"`
 	Nombre    string           `json:"nombre,omitempty"`
 	Unidad    string           `json:"unidad,omitempty"`
-	Total     int              `json:"total" jsonschema:"description=Cantidad de registros de la serie (o de indicadores del día)"`
-	Valores   []IndicadorValor `json:"valores" jsonschema:"description=Valores del día o los más recientes de la serie (máx 30), de más nuevo a más viejo"`
+	Total     int              `json:"total" jsonschema:"Cantidad de registros de la serie (o de indicadores del día)"`
+	Valores   []IndicadorValor `json:"valores" jsonschema:"Valores del día o los más recientes de la serie (máx 30), de más nuevo a más viejo"`
 }
 
 // IndicadorValor es un valor puntual.
@@ -34,7 +34,7 @@ type IndicadorValor struct {
 	Nombre string  `json:"nombre,omitempty"`
 	Valor  float64 `json:"valor"`
 	Unidad string  `json:"unidad,omitempty"`
-	Fecha  string  `json:"fecha" jsonschema:"description=aaaa-mm-dd"`
+	Fecha  string  `json:"fecha" jsonschema:"aaaa-mm-dd"`
 }
 
 func (h *handlers) indicadoresEconomicos(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
