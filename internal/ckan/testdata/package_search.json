@@ -1,0 +1,66 @@
+{
+ "help": "https://datos.gob.cl/api/3/action/help_show?name=package_search",
+ "success": true,
+ "result": {
+  "count": 569,
+  "results": [
+   {
+    "name": "412",
+    "notes": "Presupuestos desde 1999 a 2011, con sus respectivos informes de ejecución presupuestaria.",
+    "organization": {
+     "name": "subsecretaria_de_hacienda_",
+     "title": "Subsecretaría de Hacienda "
+    },
+    "title": "Presupuestos Historicos",
+    "resources": [
+     {
+      "id": "3b575007-ce64-4d7c-a5ea-58b8d59d5b42",
+      "name": "Presupuestos desde 1999 a 2011, con sus respectivos informes de ejecución presupuestaria. (PDF)",
+      "format": "html",
+      "url": "https://www.dipres.gob.cl/572/propertyvalue-2129.html",
+      "datastore_active": false,
+      "package_id": "fa66a913-df3f-4ba8-bfaf-b4ae18a6e56d"
+     }
+    ]
+   },
+   {
+    "name": "414",
+    "notes": "Presupuestos desde 1999 a 2011, con sus respectivos informes de ejecución presupuestaria.",
+    "organization": {
+     "name": "subsecretaria_de_hacienda_",
+     "title": "Subsecretaría de Hacienda "
+    },
+    "title": "Presupuestos Historicos",
+    "resources": [
+     {
+      "id": "4c81db29-185c-414a-9b88-d9ef2cfe696e",
+      "name": "Presupuestos desde 1999 a 2011, con sus respectivos informes de ejecución presupuestaria. (PDF)",
+      "format": "html",
+      "url": "https://www.dipres.gob.cl/572/propertyvalue-2129.html",
+      "datastore_active": false,
+      "package_id": "98fd6e21-81d9-42b6-b663-cee5ab88faa0"
+     }
+    ]
+   },
+   {
+    "name": "1219",
+    "notes": "Ley de Presupuestos.",
+    "organization": {
+     "name": "direccion_de_presupuestos",
+     "title": "Dirección de Presupuestos"
+    },
+    "title": "Ley de Presupuestos",
+    "resources": [
+     {
+      "id": "1537bbdb-e3ec-4a10-9978-6a7e12d79c56",
+      "name": "Ley de Presupuestos.",
+      "format": "html",
+      "url": "https://www.dipres.gob.cl/574/propertyvalue-15145.html",
+      "datastore_active": false,
+      "package_id": "de8ecfe7-d564-47d4-906e-6033b647ec08"
+     }
+    ]
+   }
+  ]
+ }
+}

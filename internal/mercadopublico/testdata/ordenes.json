@@ -1,0 +1,9 @@
+{
+ "Cantidad": 2,
+ "FechaCreacion": "2026-11-06T12:00:00.000",
+ "Version": "v1",
+ "Listado": [
+  {"Codigo": "2097-1234-SE26", "Nombre": "Compra de resmas de papel", "CodigoEstado": 6},
+  {"Codigo": "1057-889-CM26", "Nombre": "Arriendo de vehículos", "CodigoEstado": 4}
+ ]
+}

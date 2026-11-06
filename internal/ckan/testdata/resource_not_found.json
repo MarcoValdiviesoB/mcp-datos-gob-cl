@@ -1,0 +1,8 @@
+{
+ "help": "https://datos.gob.cl/api/3/action/help_show?name=resource_show",
+ "error": {
+  "__type": "Not Found Error",
+  "message": "No encontrado"
+ },
+ "success": false
+}
