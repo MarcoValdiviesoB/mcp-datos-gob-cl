@@ -1,0 +1,8 @@
+.git
+.github
+.claude
+dist
+/mcp-datos-gob-cl
+*.md
+!README.md
+.env

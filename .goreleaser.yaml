@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# Releases de mcp-datos-gob-cl. Corre en CI al pushear un tag v* (.github/workflows/release.yml).
+# Prueba local sin publicar: goreleaser release --snapshot --clean
+version: 2
+
+project_name: mcp-datos-gob-cl
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - id: mcp-datos-gob-cl
+    main: .
+    binary: mcp-datos-gob-cl
+    env:
+      - CGO_ENABLED=0
+    goos: [darwin, linux, windows]
+    goarch: [amd64, arm64]
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+      - README.md
+      - CHANGELOG.md
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "Merge pull request"
+      - "Merge branch"
+  groups:
+    - title: Nuevas funcionalidades
+      regexp: '^.*?feat(\(.+\))??!?:.+$'
+      order: 0
+    - title: Correcciones
+      regexp: '^.*?fix(\(.+\))??!?:.+$'
+      order: 1
+    - title: Otros
+      order: 999
+
+# Tap de Homebrew: github.com/MarcoValdiviesoB/homebrew-tap (debe existir antes del primer release).
+# Si el secret HOMEBREW_TAP_GITHUB_TOKEN no está, se salta la subida y el resto del release sigue.
+homebrew_casks:
+  - name: mcp-datos-gob-cl
+    binaries: [mcp-datos-gob-cl]
+    repository:
+      owner: MarcoValdiviesoB
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    directory: Casks
+    homepage: https://github.com/MarcoValdiviesoB/mcp-datos-gob-cl
+    description: Servidor MCP con datos públicos de Chile en vivo (datos.gob.cl, indicadores, Mercado Público)
+    license: MIT
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "mcp-datos-gob-cl {{ .Tag }}"
+    skip_upload: '{{ if isEnvSet "HOMEBREW_TAP_GITHUB_TOKEN" }}false{{ else }}true{{ end }}'
+    # Los binarios no están firmados por Apple: se quita la cuarentena para que macOS no los bloquee.
+    hooks:
+      post:
+        install_steps: |
+          on_macos do
+            run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ .StagedPath }}/mcp-datos-gob-cl"]
+          end
+
+release:
+  github:
+    owner: MarcoValdiviesoB
+    name: mcp-datos-gob-cl
+  draft: false
+  prerelease: auto
+  footer: |
+    **Imagen Docker:** `ghcr.io/marcovaldiviesob/mcp-datos-gob-cl:{{ .Version }}`
