@@ -60,7 +60,7 @@ brew install --cask marcovaldiviesob/tap/mcp-datos-gob-cl
 
 ### Go
 
-Requiere Go 1.23 o superior.
+Requiere Go 1.25.5 o superior.
 
 ```bash
 go install github.com/MarcoValdiviesoB/mcp-datos-gob-cl@latest
