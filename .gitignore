@@ -4,10 +4,5 @@
 # Config local de Claude Code
 .claude/settings.local.json
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-
 .DS_Store
 .env
