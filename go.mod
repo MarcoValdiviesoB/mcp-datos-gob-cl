@@ -1,6 +1,6 @@
-module mcp-datos-gob-cl
+module github.com/MarcoValdiviesoB/mcp-datos-gob-cl
 
-go 1.26.1
+go 1.23.0
 
 require github.com/mark3labs/mcp-go v0.45.0
 
