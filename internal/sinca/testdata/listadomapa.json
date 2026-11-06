@@ -1,0 +1,496 @@
+[
+ {
+  "nombre": "Super Site",
+  "key": "251",
+  "latitud": -22.085864134728,
+  "longitud": -70.188415616234,
+  "comuna": "Tocopilla",
+  "red": "Ciudad Tocopilla",
+  "region": "Región de Antofagasta",
+  "regionindex": 3,
+  "calificacion": "Privada",
+  "empresa": "ENGIE Energia Chile S.A.",
+  "realtime": [
+   {
+    "code": "PM25",
+    "name": "MP-2,5",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   },
+   {
+    "code": "PM10",
+    "name": "MP-10",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   },
+   {
+    "code": "0001",
+    "name": "Di&oacute;xido de azufre",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   },
+   {
+    "code": "0003",
+    "name": "Di&oacute;xido de nitr&oacute;geno",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   },
+   {
+    "code": "0004",
+    "name": "Mon&oacute;xido de carbono",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   },
+   {
+    "code": "0008",
+    "name": "Ozono",
+    "datetime": "2026-11-06 11:42 hrs. UTC-04",
+    "tableRow": {}
+   }
+  ]
+ },
+ {
+  "nombre": "Campiche",
+  "key": "501",
+  "latitud": -32.736065,
+  "longitud": -71.450827,
+  "comuna": "Puchuncaví",
+  "red": "Puerto Ventanas",
+  "region": "Región de Valparaíso",
+  "regionindex": 6,
+  "calificacion": "Privada",
+  "empresa": "Empresa Nacional de Energía ENEX",
+  "realtime": [
+   {
+    "code": "0001",
+    "name": "Di&oacute;xido de azufre",
+    "datetime": "2026-11-06 11:38 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de azufre",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 0.26,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 0,
+     "icapText": "ICAGSO<sub>2</sub>"
+    }
+   },
+   {
+    "code": "0003",
+    "name": "Di&oacute;xido de nitr&oacute;geno",
+    "datetime": "2026-11-06 11:38 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de nitr&oacute;geno",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 3.74,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0004",
+    "name": "Mon&oacute;xido de carbono",
+    "datetime": "2026-11-06 11:38 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Mon&oacute;xido de carbono",
+     "movil": "media m&oacute;vil 8 h",
+     "value": 0.1,
+     "unit": "ppmv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0008",
+    "name": "Ozono",
+    "datetime": "2026-11-06 11:38 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Ozono",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 17,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   }
+  ]
+ },
+ {
+  "nombre": "Consultorio - San Vicente",
+  "key": "802",
+  "latitud": -36.723695141848,
+  "longitud": -73.123658865174,
+  "comuna": "Talcahuano",
+  "red": "MMA Biobío",
+  "region": "Región del Biobío",
+  "regionindex": 10,
+  "calificacion": "Pública",
+  "empresa": "Sub Secretaría del Medio Ambiente",
+  "realtime": [
+   {
+    "code": "PM25",
+    "name": "MP-2,5",
+    "datetime": "2026-11-06 11:31 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 2,5",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 7,
+     "unit": "&micro;g&#8725;m<sup>3</sup>",
+     "icap": 14,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "PM10",
+    "name": "MP-10",
+    "datetime": "2026-11-06 11:31 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 10",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 17,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 13,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "0001",
+    "name": "Di&oacute;xido de azufre",
+    "datetime": "2026-11-06 11:31 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 08:00",
+     "parameter": "Di&oacute;xido de azufre",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 2.62,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 0,
+     "icapText": "ICAGSO<sub>2</sub>"
+    }
+   },
+   {
+    "code": "0003",
+    "name": "Di&oacute;xido de nitr&oacute;geno",
+    "datetime": "2026-11-06 11:31 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de nitr&oacute;geno",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 3.35,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   }
+  ]
+ },
+ {
+  "nombre": "Las Encinas Temuco",
+  "key": "901",
+  "latitud": -38.748650731093,
+  "longitud": -72.619012605804,
+  "comuna": "Temuco",
+  "red": "Red MMA",
+  "region": "Región de La Araucanía",
+  "regionindex": 11,
+  "calificacion": "Pública",
+  "empresa": "Ministerio del Medio Ambiente",
+  "realtime": [
+   {
+    "code": "PM25",
+    "name": "MP-2,5",
+    "datetime": "2026-11-06 11:25 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 2,5",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 8,
+     "unit": "&micro;g&#8725;m<sup>3</sup>",
+     "icap": 16,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "PM10",
+    "name": "MP-10",
+    "datetime": "2026-11-06 11:25 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 10",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 10,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 8,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "0004",
+    "name": "Mon&oacute;xido de carbono",
+    "datetime": "2026-11-06 11:25 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 08:00",
+     "parameter": "Mon&oacute;xido de carbono",
+     "movil": "media m&oacute;vil 8 h",
+     "value": 0.1,
+     "unit": "ppmv",
+     "icap": null,
+     "icapText": null
+    }
+   }
+  ]
+ },
+ {
+  "nombre": "La Florida (Acreditada)",
+  "key": "D12",
+  "latitud": -33.516630362266,
+  "longitud": -70.588123961971,
+  "comuna": "La Florida",
+  "red": "MACAM - Metropolitana",
+  "region": "Región Metropolitana de Santiago",
+  "regionindex": 7,
+  "calificacion": "Pública",
+  "empresa": "Ministerio del Medio Ambiente",
+  "realtime": [
+   {
+    "code": "PM25",
+    "name": "MP-2,5",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 2,5",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 10,
+     "unit": "&micro;g&#8725;m<sup>3</sup>",
+     "icap": 20,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "PM10",
+    "name": "MP-10",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "MP 10",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 29,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 22,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "0001",
+    "name": "Di&oacute;xido de azufre",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de azufre",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 7.43,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 2,
+     "icapText": "ICAGSO<sub>2</sub>"
+    }
+   },
+   {
+    "code": "0003",
+    "name": "Di&oacute;xido de nitr&oacute;geno",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de nitr&oacute;geno",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 11.17,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0004",
+    "name": "Mon&oacute;xido de carbono",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Mon&oacute;xido de carbono",
+     "movil": "media m&oacute;vil 8 h",
+     "value": 0.42,
+     "unit": "ppmv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0008",
+    "name": "Ozono",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Ozono",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 10,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   }
+  ]
+ },
+ {
+  "nombre": "Las Condes (Acreditada)",
+  "key": "D13",
+  "latitud": -33.37677352033,
+  "longitud": -70.523326784061,
+  "comuna": "Las Condes",
+  "red": "MACAM - Metropolitana",
+  "region": "Región Metropolitana de Santiago",
+  "regionindex": 7,
+  "calificacion": "Pública",
+  "empresa": "Ministerio del Medio Ambiente",
+  "realtime": [
+   {
+    "code": "PM25",
+    "name": "MP-2,5",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 09:00",
+     "parameter": "MP 2,5",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 9,
+     "unit": "&micro;g&#8725;m<sup>3</sup>",
+     "icap": 18,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "PM10",
+    "name": "MP-10",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "MP 10",
+     "movil": "media m&oacute;vil 24 h",
+     "value": 35,
+     "unit": "&micro;g&#8725;m<sup>3</sup>N",
+     "icap": 27,
+     "icapText": "ICAP"
+    }
+   },
+   {
+    "code": "0003",
+    "name": "Di&oacute;xido de nitr&oacute;geno",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Di&oacute;xido de nitr&oacute;geno",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 14.33,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0004",
+    "name": "Mon&oacute;xido de carbono",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Mon&oacute;xido de carbono",
+     "movil": "media m&oacute;vil 8 h",
+     "value": 0.83,
+     "unit": "ppmv",
+     "icap": null,
+     "icapText": null
+    }
+   },
+   {
+    "code": "0008",
+    "name": "Ozono",
+    "datetime": "2026-11-06 11:22 hrs. UTC-04",
+    "tableRow": {
+     "color": "#2eae00",
+     "status": "bueno",
+     "statuscode": 1,
+     "datetime": "2026-11-06 10:00",
+     "parameter": "Ozono",
+     "movil": "concentraci&oacute;n 1 h",
+     "value": 69,
+     "unit": "ppbv",
+     "icap": null,
+     "icapText": null
+    }
+   }
+  ]
+ }
+]

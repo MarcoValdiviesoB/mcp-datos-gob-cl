@@ -1,0 +1,129 @@
+{
+ "help": "https://datos.gob.cl/api/3/action/help_show?name=datastore_search",
+ "success": true,
+ "result": {
+  "fields": [
+   {
+    "id": "_id",
+    "type": "int"
+   },
+   {
+    "id": "ID",
+    "type": "text"
+   },
+   {
+    "id": "RUT",
+    "type": "text"
+   },
+   {
+    "id": "Razon Social",
+    "type": "text"
+   },
+   {
+    "id": "Fecha de actuacion (1era firma)",
+    "type": "text"
+   },
+   {
+    "id": "Fecha de registro (ultima firma)",
+    "type": "text"
+   },
+   {
+    "id": "Fecha de aprobacion x SII",
+    "type": "text"
+   },
+   {
+    "id": "Anio",
+    "type": "text"
+   },
+   {
+    "id": "Mes",
+    "type": "text"
+   },
+   {
+    "id": "Comuna Tributaria",
+    "type": "text"
+   },
+   {
+    "id": "Region Tributaria",
+    "type": "text"
+   },
+   {
+    "id": "Codigo de sociedad",
+    "type": "text"
+   },
+   {
+    "id": "Tipo de actuacion",
+    "type": "text"
+   },
+   {
+    "id": "Capital",
+    "type": "text"
+   },
+   {
+    "id": "Comuna Social",
+    "type": "text"
+   },
+   {
+    "id": "Region Social",
+    "type": "text"
+   }
+  ],
+  "records": [
+   {
+    "_id": 1,
+    "ID": "6438381",
+    "RUT": "78325555-3",
+    "Razon Social": "Tentaciones de Katirita SpA",
+    "Fecha de actuacion (1era firma)": "01-01-2026",
+    "Fecha de registro (ultima firma)": "01-01-2026",
+    "Fecha de aprobacion x SII": "01-01-2026",
+    "Anio": "2026",
+    "Mes": "Enero",
+    "Comuna Tributaria": "VALPARAISO",
+    "Region Tributaria": "5",
+    "Codigo de sociedad": "SpA",
+    "Tipo de actuacion": "CONSTITUCIÓN",
+    "Capital": "2000000",
+    "Comuna Social": "VALPARAISO",
+    "Region Social": "5"
+   },
+   {
+    "_id": 2,
+    "ID": "6438367",
+    "RUT": "78325537-5",
+    "Razon Social": "SOCIEDAD QUIROZ NICOLICH SPA",
+    "Fecha de actuacion (1era firma)": "01-01-2026",
+    "Fecha de registro (ultima firma)": "01-01-2026",
+    "Fecha de aprobacion x SII": "01-01-2026",
+    "Anio": "2026",
+    "Mes": "Enero",
+    "Comuna Tributaria": "VALPARAISO",
+    "Region Tributaria": "5",
+    "Codigo de sociedad": "SpA",
+    "Tipo de actuacion": "CONSTITUCIÓN",
+    "Capital": "878841",
+    "Comuna Social": "VALPARAISO",
+    "Region Social": "5"
+   },
+   {
+    "_id": 3,
+    "ID": "6438418",
+    "RUT": "78325551-0",
+    "Razon Social": "Innovarte Chile Figueroa y Reyes Limitada",
+    "Fecha de actuacion (1era firma)": "01-01-2026",
+    "Fecha de registro (ultima firma)": "01-01-2026",
+    "Fecha de aprobacion x SII": "01-01-2026",
+    "Anio": "2026",
+    "Mes": "Enero",
+    "Comuna Tributaria": "VALPARAISO",
+    "Region Tributaria": "5",
+    "Codigo de sociedad": "SRL",
+    "Tipo de actuacion": "CONSTITUCIÓN",
+    "Capital": "1060000",
+    "Comuna Social": "VALPARAISO",
+    "Region Social": "5"
+   }
+  ],
+  "total": 148405
+ }
+}
